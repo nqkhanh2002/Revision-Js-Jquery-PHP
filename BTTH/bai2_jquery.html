@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('button').click(function(){
+                var tong = 0;
+                var list = '';
+                $('option:selected').each(function(){
+                    var gia = parseInt($(this).attr('gia')) * 1000;
+                    if($('input[name="time"]:checked').val() == 'Ban dem') {
+                        gia = gia * 110 / 100;
+                    }   
+                            
+                    tong += gia;
+                    list += `
+                        <tr> 
+                            <td>${$(this).val()}</td>
+                            <td>${gia}</td>
+                        </tr>
+                    `;
+                });
+                $('#res').html(
+                    `
+                    ${list}
+                    <tr>
+                        <td>Tong tien</td>
+                        <td>${tong}</td>    
+                    </tr>
+                    `
+                );
+            });
+        });
+    </script>
+</head>
+<body>
+    <table border="1" align="center">
+        <thead>
+            <tr>
+                <th colspan="3">THUC DON</th>
+            </tr>
+            <tr>
+                <th>Thuc an</th>
+                <th>Nuoc uong</th>
+                <th>Thoi diem</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <select multiple size="7">
+                        <option gia="20" value="Bun bo">Bun bo</option>
+                        <option gia="18" value="Hu tieu">Hu tieu</option>
+                        <option gia="17" value="Banh canh">Banh canh</option>
+                        <option gia="19" value="Pho bo">Pho bo</option>
+                        <option gia="15" value="Nuoi">Nuoi</option>
+                        <option gia="12" value="Banh mi thit">Banh mi thit</option>
+                        <option gia="15" value="Banh cuon">Banh cuon</option>
+                    </select>
+                </td>
+                <td>
+                    <select multiple size="7">
+                        <option gia="12" value="Ca phe da">Ca phe da</option>
+                        <option gia="15" value="Ca phe sua da">Ca phe sua da</option>
+                        <option gia="13" value="Chanh day">Chanh day</option>
+                        <option gia="12" value="Chanh muoi">Chanh muoi</option>
+                        <option gia="14" value="Xi muoi">Xi muoi</option>
+                        <option gia="13" value="Sua tuoi">Sua tuoi</option>
+                        <option gia="17" value="Cam vat">Cam vat</option>
+                    </select>
+                </td>
+                <td>
+                        <input id="am" value="Ban ngay" type="radio" name="time" checked>
+                        <label for="am">Ban ngay</label>
+                        <br>
+                        <input id="pm" value="Ban dem" type="radio" name="time">
+                        <label for="pm">Ban dem</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center">
+                    <button>Tinh Tien</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table id="res" border="1" align="center">
+        <thead>
+            <tr>
+                <td>Cac mon da dung</td>
+                <td>Tien</td>
+            </tr>
+            <tbody>
+                <tr>
+                    <td>Tong tien</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </thead>
+    </table>
+</body>
+</html>
