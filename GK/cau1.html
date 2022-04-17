@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('button').click(function(){
+                var a = parseFloat($('#hs1').val());
+                var b = parseFloat($('#hs2').val());
+                var c = parseFloat($('#hs3').val()); 
+                var delta = b*b - 4*a*c;
+                var cnt = Math.sqrt(delta);
+                if(delta > 0) {
+                    var x1 = (cnt - b) / (2 * a);
+                    var x2 = (-cnt - b) / (2 * a);
+                    $('h2').text("Phong trinh co 2 ngiem x1=" + x1 + ", x2=" + x2);
+                } 
+                else if(delta == 0) {
+                    $('h2').text("Phuong trinh co nghiem duy nhat x=" + b / 2 * a)
+                }
+                else {
+                    $('h2').text("Phuong trinh vo nghiem");
+                }
+            });     
+        });
+    </script>
+</head>
+<body>
+    He so a 
+    <input type="text" id="hs1" value="1"> <br>
+    He so b
+    <input type="text" id="hs2" value="2"> <br>
+    He so c
+    <input type="text" id="hs3" value="1"> <br>
+    <button>Ket qua</button>
+    <h2></h2>
+</body>
+</html>

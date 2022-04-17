@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('button').click(function(){
+                var list='';
+                var tong=0;
+                var stt=0;
+                $('option:selected').each(function(){
+                    stt++;
+                    var gia = parseInt($(this).attr('gia')) * 1000;
+                    if($('input[name="time"]:checked').val() == 'Ban dem') {
+                        gia = gia * 120 / 100;
+                    }
+                    tong += gia;
+                    list += `
+                        <tr>
+                            <td>${stt}</td>
+                            <td>${$(this).val()}</td>
+                            <td>${gia}</td>
+                        </tr>
+                    `;
+                }); 
+            $('#res tbody').html(
+                `
+                ${list}
+                <tr>
+                    <td colspan="2">Tong tien</td>
+                    <td>${tong}</td>
+                </tr>
+                `
+            );
+            });
+        });
+    </script>
+</head>
+<body>
+    Danh sach nuoc uong <br>
+    <select multiple size="4">
+        <option value="Ca phe da" gia="15">Ca phe da</option>
+        <option value="Ca phe sua" gia="20">Ca phe sua</option>
+        <option value="Cam vat" gia="30">Cam vat</option>
+        <option value="Chanh muoi" gia="20">Chanh muo</option>
+        <option value="Nuoc ngot" gia="15">Nuoc ngot</option>
+        <option value="Nuoi suoi" gia="10">Nuoc suoi</option>
+    </select>
+        <br>
+        <input type="radio" name="time" checked value="Ban ngay">Ban ngay
+        <input type="radio" name="time" value="Ban dem">Ban dem
+        <br>
+        <button>Thanh tien</button>
+    <table border="1" id="res">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Cac mon da chon</th>
+                <th>Tien</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="2">Tong tien</td>
+                <td>0</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

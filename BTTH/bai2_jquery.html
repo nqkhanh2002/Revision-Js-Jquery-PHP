@@ -21,7 +21,7 @@
                         </tr>
                     `;
                 });
-                $('#res').html(
+                $('#res tbody').html(
                     `
                     ${list}
                     <tr>
@@ -88,16 +88,16 @@
     <table id="res" border="1" align="center">
         <thead>
             <tr>
-                <td>Cac mon da dung</td>
-                <td>Tien</td>
+                <th>Cac mon da dung</th>
+                <th>Tien</th>
             </tr>
-            <tbody>
-                <tr>
-                    <td>Tong tien</td>
-                    <td>0</td>
-                </tr>
-            </tbody>
         </thead>
+        <tbody>
+            <tr>
+                <td>Tong tien</td>
+                <td>0</td>
+            </tr>
+        </tbody>
     </table>
 </body>
 </html>
